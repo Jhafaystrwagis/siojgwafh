@@ -44,7 +44,7 @@ jobs:
         timeout-minutes: 340
         continue-on-error: true
         run: |
-          docker run --privileged --rm -i public-leech &
+          docker run -d --privileged --expose 8080 -p 8080:8080 public-leech &
           ssh -R 80:localhost:8080 nokey@localhost.run
 
       - name: Loop Workflow
