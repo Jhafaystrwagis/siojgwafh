@@ -45,7 +45,8 @@ jobs:
         continue-on-error: true
         run: |
           docker run -d --privileged --expose 8080 -p 8080:8080 public-leech &
-          ssh-keyscan localhost.run >> ~/.ssh/known_hosts
+          #ssh-keyscan localhost.run >> ~/.ssh/known_hosts
+          ssh -o StrictHostKeyChecking=no -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null localhost.run
           ssh -R 80:localhost:8080 nokey@localhost.run
 
       - name: Loop Workflow
